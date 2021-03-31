@@ -1,0 +1,59 @@
+#High-pass-filter
+
+#@import Plot
+import numpy as np
+import matplotlib.pyplot as plt
+%matplotlib inline
+
+#@ Import Audio
+from IPython.display import Audio
+from scipy.io import wavfile
+from io import BytesIO 
+
+# signal frekuensi
+fs  = 4000
+T   = 1/fs 
+t   = .1
+N   = fs * t
+
+freq = 586 
+omega = 2*np.pi*freq
+
+t_seq = np.arange(N)*T
+
+y = np.sin (omega*t_seq)
+
+plt.plot(t_seq,y)
+plt.show()
+
+Audio(y, rate = fs)
+
+# signal frekuensi
+fs  = 4000
+T   = 1/fs 
+t   = .1
+N   = fs * t
+
+freq = 863 
+omega = 2*np.pi*freq
+
+t_seq = np.arange(N)*T
+
+x = np.sin (omega*t_seq)
+
+plt.plot(t_seq,x)
+plt.show()
+
+Audio(x, rate = fs)
+
+# signal frekuensi 586 hz - 863 hz
+fs  = 4000
+t = np.arange(0, 5, step = 1./fs)
+x = np.sin(2 * np.pi * 586 * t)
+y = np.sin(2 * np.pi * 863 *t)
+z = x+y
+
+plt.plot(t,z)
+plt.xlim(0, .2)
+
+Audio(z, rate = fs)
